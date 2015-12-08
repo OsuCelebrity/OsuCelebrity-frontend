@@ -1,0 +1,60 @@
+.leaderboard-wrapper {
+    font-family: 'Ubuntu', sans-serif;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    width: 380px;
+    height: 200px;
+    min-width: 380px;
+    max-width: 380px;
+    /*background-color: rgba(215, 44, 209, 0.2);*/
+    text-shadow: rgb(71, 71, 71) 3px 2px 2px;
+    background-color: rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: inset 0px 2px 2px 0px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: inset 0px 2px 2px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0px 2px 2px 0px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    top: 423px;
+    left: 9px;
+}
+table {
+    border-collapse: separate;
+    border-spacing: 0px;
+    padding: 5px;
+}
+th {
+    text-align: left;
+    max-width: 100px;
+    padding-bottom: 15px;
+}
+.first {
+    line-height: 20px;
+}
+td {
+    padding-right: 3px;
+    border-right: 1px solid rgba(255,255,255,0.3);
+}
+td:nth-child(1) {
+    border-right: none;
+}
+th:nth-child(3) {
+    text-align: left;
+}
+td:nth-child(2) {
+    max-width: 175px;
+    width: 180px;
+    overflow: hidden;
+    text-align: left;
+}
+td:nth-child(3) {
+    text-align: right;
+}
+td:nth-child(4) {
+    text-align: right;
+}
+tr {
+    padding-bottom: 10px;
+}
+tr td:first-child {
+    text-align: center;
+}

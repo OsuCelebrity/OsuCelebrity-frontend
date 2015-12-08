@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>OsuCelebrity Front-end</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/userinfo.css">
+    <link rel="stylesheet" href="css/twitch-chat.css">
+    <link rel="stylesheet" href="css/leaderboard.css">
+    <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,300,300italic,400italic,500,500italic,700,700italic|Exo+2:400,600,700,300,500,800' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+    <video autoplay="true" loop>
+        <source src="img/videoloop.webm" type="video/webm">
+    </video>
+
+    <div id="chat_box"></div>
+
+    <div class="userinfo-wrapper">
+        <div class="box-inner">
+            <div class="top-panel">
+                <div class="healthbar">
+                    <progress id="progressBar" max="1" value="1"></progress>
+                    <span class="progresslabel">Searching for next player...</span>
+                </div>
+            </div>
+            <div class="left-panel">
+                <div class="userimage">
+                    <img id="myimg" src="userimage.png">
+                </div>
+            </div>
+            <div class="second-panel">
+                <div class="current">Currently Spectating:</div>
+                <div id="username" class="playername">ReesesPuffs</div>
+                <div class="underplayername">
+                    <div><b class="icon-ctb" id="gamemode"></b></div>
+                    <div><b id="rank">28</b></div>
+                    <div><b id="plays">171,817</b> Plays</div>
+                    <div><b id="accuracy">98.75%</b></div>
+                    <div><b id="pp">8602.31</b></div>
+                    <div>Lvl <b id="level">101</b></div>
+                    <div><b><img id="country" class="flag-img" src="flags/JP.png"></b></div>
+                </div>
+            </div>
+            <div class="third-panel">
+                <div class="nowplaying-wrapper">
+                    <span class="nptext">Now Playing:</span> <b id="nowplaying">UNDEAD CORPORATION - Everything will freeze [Freezing]</b>
+                </div>
+                <div class="userstats">
+                    <div class="upnext">Up Next: <b id="nextplayer">Cookiezi</b></div>
+                    <div class="timeplayed">Time Played: <b id="timeplayed">13:37</b></div>
+                    <!-- <div class="botmode">Mode: <b id="botmode-text">Spectate Mode</b></div> -->
+                    <div class="queuetotal">Total Queued: <b id="queuetotal">50</b>
+                    </div>
+                    <div class="creators">
+                        osu!celebrity beta | Made by Redback, Tillerino, and ReesesPuffs | Type <b>!help</b> for help
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="leaderboard-wrapper">
+        <table id="leaderboard">
+            <tr class="firstrow">
+                <th></th>
+                <th>Player</th>
+                <th>Time</th>
+                <th>Votes</th>
+            </tr>
+            <tr class="first">
+                <td>♕</td>
+                <td id="nextplayer"></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="first">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="second">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="third">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="fourth">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="fifth">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <script src="js/socket.io.js"></script>
+    <script src="js/punycode.min.js"></script>
+    <script src="js/twitch-chat.js"></script>
+    <script src="js/userinfo.js"></script>
+    <script src="js/leaderboard.js"></script>
+</body>
+
+</html>
