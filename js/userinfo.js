@@ -18,7 +18,7 @@ $(document).ready(function () {
                 $("#timeplayed").text(data.playingFor);
                 $("#queuetotal").text(data.queueSize);
                 $("#plays").text(data.playCount).digits();
-                $('#country').attr('src', "flags/" + data.country.toLowerCase() + ".png");
+                $('#country').attr('src', "img/flags/" + data.country.toLowerCase() + ".png");
                 if (data.hasOwnProperty('nextPlayer')) {
                     $("#nextplayer").text(data.nextPlayer);
                     $('.upnext').removeClass('hide');
