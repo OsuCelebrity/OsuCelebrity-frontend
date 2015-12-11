@@ -388,5 +388,5 @@
             };
 
             $(document).ready(function(){
-              Chat.load(getParameterByName('channel').toLowerCase() || 'forsenlol');
+              Chat.load(getParameterByName('channel').toLowerCase() || 'osucelebrity');
             });

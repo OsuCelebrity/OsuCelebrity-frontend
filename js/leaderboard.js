@@ -34,7 +34,7 @@ $(document).ready(function () {
             cache: false,
             success: function (data) {
                 if (data.hasOwnProperty('nextPlayer')) {
-                    $("#nextplayer").text(data.nextPlayer);
+                    $("#nextplayer-leaderboard").text(data.nextPlayer);
                 }
             }
         });
