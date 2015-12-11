@@ -1,0 +1,46 @@
+.meme-spammer {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: "Arial Black", Gadget, sans-serif;
+    opacity: 0.5;
+    z-index: -4;
+    overflow: visible;
+}
+
+.meme-spammer div {
+    font-weight: bold;
+    /*width: 100%;*/
+}
+
+.one {
+    position: absolute;
+    left: 300px;
+}
+.two {
+    position: absolute;
+    left: 500px;
+    top: 60px;
+}
+.three {
+    position: absolute;
+    left: 300px;
+    top: 500px;
+}
+.four {
+    position: absolute;
+    left: 800px;
+    top: 500px;
+}
+
+@keyframes moveleft {
+    from {right: -250px;}
+    to {right: 2000px;}
+}
+
+.slideleft {
+    color: white;
+    animation-name: moveleft;
+    animation-timing-function: linear;
+}
