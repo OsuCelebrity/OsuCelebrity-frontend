@@ -2,6 +2,11 @@
     width: 900px;
 }
 
+.idle-text {
+    height: 26px;
+    width: 100%;
+}
+
 .third-panel {
     display: none;
 }
