@@ -75,7 +75,7 @@ body {
     content: '\e803';
 }
 
-video {
+.bgvideo {
     margin: 0;
     padding: 0;
     position: absolute;

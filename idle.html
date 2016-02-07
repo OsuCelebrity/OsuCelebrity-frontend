@@ -9,12 +9,13 @@
     <link rel="stylesheet" href="css/twitch-chat.css">
     <link rel="stylesheet" href="css/leaderboard.css">
     <link rel="stylesheet" href="css/follower-alert.css">
+    <link rel="stylesheet" href="css/slick.css">
     <link rel="stylesheet" href="css/idle.css">
     <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,300,300italic,400italic,500,500italic,700,700italic|Exo+2:400,600,700,300,500,800|Chewy' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
-    <video autoplay loop>
+    <video class="bgvideo" autoplay loop>
         <source src="img/videoloop.webm" type="video/webm">
         <source src="img/videoloop.mp4" type="video/mp4">
     </video>
@@ -113,6 +114,16 @@
         </table>
     </div>
 
+    <div class="wallpaper-wrapper">
+        <div class="wallpaper">
+            <video class="wallpaper-video" autoplay loop>
+                <source src="img/wallpapers/angel.webm" type="video/webm">
+            </video>
+        </div>
+        <div class="wallpaper"><img src="img/wallpapers/03.png"></div>
+        <div class="wallpaper"><img src="img/wallpapers/09.jpg"></div>
+    </div>
+
     <div style="background-image: url(&quot;https://dl.dropboxusercontent.com/s/iwl4jffw67h1l7v/follow-alert-1438474286046.png?dl=0&quot;); position: fixed; left: -580px; top: 600px; display: inline-block; z-index: 9;" id="follower-alert">
         <div class="text" id="new-follower">Test_user</div>
         <div class="has-followed">has followed!</div>
@@ -126,6 +137,7 @@
     <script src="js/leaderboard.js"></script>
     <script src="js/jquery.fittext.js"></script>
     <script src="js/follower-alert.js"></script>
+    <script src="js/slick.min.js"></script>
     <script src="js/idle.js"></script>
 </body>
 
