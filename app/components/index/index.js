@@ -9,6 +9,8 @@ angular.module('osuCelebrity')
   });
 }])
 
-.controller('IndexController', [function() {
-
+.controller('IndexController', ['$timeout', function($timeout) {
+  $timeout(function(){
+    angular.element(document).find(".bgvideo").css('opacity', '0.33');
+  }, 500);
 }]);

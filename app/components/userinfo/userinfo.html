@@ -1,0 +1,43 @@
+<div class="userinfo-wrapper">
+  <div class="box-inner">
+    <div class="top-panel">
+      <div class="healthbar">
+        <progress id="progressBar" max="1" ng-value="current.health"></progress>
+        <span class="progresslabel" ng-show="current.health < 0.0001">Searching for next player...</span>
+      </div>
+    </div>
+    <div class="left-panel">
+      <div class="userimage">
+        <img id="myimg" ng-src="https://a.ppy.sh/{{current.id}}_{{new Date().getTime()}}.png">
+      </div>
+    </div>
+    <div class="second-panel">
+      <div class="current">Currently Spectating:</div>
+      <div id="username" class="playername">{{current.name}}</div>
+      <div class="underplayername">
+        <div><b ng-class="modeIcon" id="gamemode"></b></div>
+        <div><b id="rank">#{{current.rank}}</b></div>
+        <div><b id="plays">{{current.playCount | number:0}}</b> Plays</div>
+        <div><b id="accuracy">{{current.accuracy | number:2}}%</b></div>
+        <div><b id="pp">{{current.pp}}pp</b></div>
+        <div>Lvl <b id="level">{{Math.floor(current.level)}}</b></div>
+        <div><b><img id="country" class="flag-img" ng-src="img/flags/{{current.country | lowercase}}.png'"></b></div>
+      </div>
+    </div>
+    <div class="third-panel">
+      <div class="nowplaying-wrapper" ng-show="current.beatmap">
+        <span class="nptext">Now Playing:</span> <b id="nowplaying">{{current.beatmap}}</b>
+      </div>
+      <div class="userstats">
+        <div class="upnext" ng-show="current.nextPlayer">Up Next: <b id="nextplayer">{{current.nextPlayer}}</b></div>
+        <div class="timeplayed">Time Played: <b id="timeplayed">{{current.playingFor}}</b></div>
+        <!-- <div class="botmode">Mode: <b id="botmode-text">Spectate Mode</b></div> -->
+        <div class="queuetotal">Total Queued: <b id="queuetotal">{{current.queueSize}}</b>
+        </div>
+        <div class="creators">
+          osu!celebrity beta | Made by Redback, Tillerino, and ReesesPuffs | Type <b>!help</b> for help
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
