@@ -35,6 +35,8 @@ $(document).ready(function () {
             success: function (data) {
                 if (data.hasOwnProperty('nextPlayer')) {
                     $("#nextplayer-leaderboard").text(data.nextPlayer);
+                } else {
+                	$("#nextplayer-leaderboard").text("...");
                 }
             }
         });
