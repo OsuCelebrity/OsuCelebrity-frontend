@@ -2,13 +2,13 @@
   <div class="box-inner">
     <div class="top-panel">
       <div class="healthbar">
-        <progress id="progressBar" max="1" ng-value="current.health"></progress>
+        <progress id="progressBar" max="1" value="1" ng-value="current.health"></progress>
         <span class="progresslabel" ng-show="current.health < 0.0001">Searching for next player...</span>
       </div>
     </div>
     <div class="left-panel">
       <div class="userimage">
-        <img id="myimg" ng-src="https://a.ppy.sh/{{current.id}}_{{new Date().getTime()}}.png">
+        <img id="myimg" ng-src="https://a.ppy.sh/{{current.id}}_{{getDate()}}.png">
       </div>
     </div>
     <div class="second-panel">
@@ -41,3 +41,5 @@
     </div>
   </div>
 </div>
+
+<link rel="stylesheet" href="css/userinfo.css">

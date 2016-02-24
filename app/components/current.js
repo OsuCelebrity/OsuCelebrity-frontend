@@ -2,6 +2,6 @@
 
 angular.module('osuCelebrity')
 
-.service('CurrentService', ['$resource', function($resource) {
-  return $resource('http://localhost:8989/current');
+.service('CurrentService', ['ENDPOINTS', '$resource', function(ENDPOINTS, $resource) {
+  return $resource(ENDPOINTS.CURRENT);
 }]);

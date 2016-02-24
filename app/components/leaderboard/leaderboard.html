@@ -8,7 +8,7 @@
     </tr>
     <tr class="first">
       <td>♕</td>
-      <td id="nextplayer-leaderboard">{{angular.isDefined(current.nextPlayer) ? current.nextPlayer : '...'}}</td>
+      <td id="nextplayer-leaderboard">{{current.nextPlayer ? current.nextPlayer : '...'}}</td>
       <td></td>
       <td></td>
     </tr>
@@ -44,3 +44,5 @@
     </tr>
   </table>
 </div>
+
+<link rel="stylesheet" href="css/leaderboard.css">

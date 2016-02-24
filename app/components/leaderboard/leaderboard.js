@@ -6,21 +6,23 @@ angular.module('osuCelebrity')
   return {
     templateUrl: 'components/leaderboard/leaderboard.html',
     restrict: 'E',
-    controller: 'LeaderboardController'
+    controller: 'LeaderboardController',
+    link: function($scope, $element, $attr, ctrl) {
+      ctrl.startLink();
+    }
   };
 })
 
-.controller('LeaderboardController', ['$scope', '$interval', 'QueueService', 'CurrentService', 
-  function($scope, $interval, Queue, Current) {
+.controller('LeaderboardController', ['INTERVALS', '$scope', '$interval', 'QueueService', 'CurrentService', 
+  function(INTERVALS, $scope, $interval, Queue, Current) {
 
-  $interval(updateQueue, 300);
-  $interval(updateCurrent, 300);
-
-  var updateQueue = function() {
-    $scope.queue = Queue.query();
+  this.startLink = function() {
+    $interval(updateQueue, INTERVALS.LEADERBOARD);
   };
 
-  var updateCurrent = function() {
-    $scope.current = Current.query();
+  var updateQueue = function() {
+    var queue = Queue.query(function() {
+      $scope.queue = queue;
+    });
   };
 }]);

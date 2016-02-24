@@ -12,26 +12,30 @@
   <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/userinfo.css">
-  <link rel="stylesheet" href="css/twitch-chat.css">
-  <link rel="stylesheet" href="css/leaderboard.css">
-  <link rel="stylesheet" href="css/follower-alert.css">
   <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,300,300italic,400italic,500,500italic,700,700italic|Exo+2:400,600,700,300,500,800|Chewy' rel='stylesheet' type='text/css'>
 </head>
-<body>
+<body ng-cloak>
 
   <div ng-view></div>
 
   <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
   -->
+  <script src="js/jquery-1.8.2.min.js"></script>
+
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
   <script src="bower_components/angular-resource/angular-resource.js"></script>
+
   <script src="app.js"></script>
+  <script src="config.js"></script>
   <script src="components/current.js"></script>
   <script src="components/queue.js"></script>
-  <script src="components/index/index.js"></script>
+  <script src="components/userinfo/userinfo.js"></script>
+  <script src="components/twitchchat/twitchchat.js"></script>
   <script src="components/leaderboard/leaderboard.js"></script>
+  <script src="components/followeralert/followeralert.js"></script>
+  
+  <script src="components/index/index.js"></script>
 </body>
 </html>

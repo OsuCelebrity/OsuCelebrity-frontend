@@ -6,22 +6,25 @@ angular.module('osuCelebrity')
   return {
     templateUrl: 'components/userinfo/userinfo.html',
     restrict: 'E',
-    controller: 'UserInfoController'
+    controller: 'UserInfoController',
+    link: function($scope, $element, $attr, ctrl) {
+      ctrl.startLink();
+    }
   };
 })
 
-.controller('UserInfoController', ['$scope', '$interval', 'CurrentService', 
-  function($scope, $interval, Current) {
+.controller('UserInfoController', ['INTERVALS', '$scope', '$interval', 'CurrentService', '$resource', 
+  function(INTERVALS, $scope, $interval, Current, $resource) {
 
-  $scope.Math = Math;
-  $interval(updateUserInfo, 100);
+  this.startLink = function() {
+    $scope.Math = Math;
+    $interval(updateCurrent, INTERVALS.USER_INFO);
+  }
 
-  var updateUserInfo = function() {
-    $scope.current = Current.query(function() {
+  var updateCurrent = function() {
+    var current = Current.get({}, function() {
+      $scope.current = current;
       switch($scope.current.gameMode) {
-        case 0:
-          $scope.modeIcon = "icon-standard";
-          break;
         case 1:
           $scope.modeIcon = "icon-taiko";
           break;
@@ -31,10 +34,15 @@ angular.module('osuCelebrity')
         case 3:
           $scope.modeIcon = "icon-mania";
           break;
+        case 0:
         default:
           $scope.modeIcon = "icon-standard";
           break;
       }
     });
+  };
+
+  $scope.getDate = function() {
+    return new Date().getTime();
   };
 }]);
