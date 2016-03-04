@@ -1,14 +1,20 @@
 language: node_js
 node_js:
-  - "0.10"
-
+- '0.10'
 before_script:
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-  - npm start > /dev/null &
-  - npm run update-webdriver
-  - sleep 1 # give server time to start
-
+- pip install --user codecov
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
+- npm start > /dev/null &
+- npm run update-webdriver
+- sleep 1
 script:
-  - node_modules/.bin/karma start karma.conf.js --no-auto-watch --single-run --reporters=dots --browsers=PhantomJS
-#  - node_modules/.bin/protractor e2e-tests/protractor.conf.js --browser=firefox
+- node_modules/.bin/karma start karma.conf.js --no-auto-watch --single-run --reporters=coverage
+  --browsers=PhantomJS
+after_success:
+- codecov
+notifications:
+  slack:
+    rooms:
+      secure: O1ZkrCfFWHKic4O7d38kyOdaUNcCdIVSAwIgteco/l2Qeib5281SiaLHmHwrTuyBhwmkCeqiw7HJ762gxQdp0p4IbG3s5aNDdcupLccKdfPqXJ7bzNLZda+oXqqn2XusEYf9jOO2IUDjRFcn+u47FiG9tAVyHu9sg4XTNHmC9DXKV24OrZjtEoXq6KMjaON+PBwIjyq7Bg1Pb2mUg4WQmlU4Fqh27LYjFl+JEnpSvUknyX5X4gHJ9qZL5oqskD4wYcC8U2HENvwyY2cx02mO1LWHY47Kvu9AE0hkffjLsJhR3rZv71TGwn0F3n1KD+gKVGJ5bsHBzpviL0e1olJjeReCPa1+DZbVYpMnLxfoJgH7OZBNdYuvCWM23IrhkaFkuZNdaws3RG8YrKFkOjz/mKw488aa3ugGAl2CMr9TENOyWPjCsWwPRUnSldKu3UiLNFDfzGitPK7WEk/OxHare3tdIT3GkVZLdtLoSmR+jipux13BqfB2xB4VS/+8PEZlcesDYhHDMwsq5n6qGNpXUL4lAOzG8jAGKuWaPKmJm+m4wm4hTFrLIwMZ2qqJi8H//AhdCc/qRHAUOA7Jb44ccP8xkFUY+kHuhHjWtsDkgBr/3hTod2xTnehqt67LxdDwe4iNsnfKQXKKdCk6bdjUj73nR6yq3mW4K97QHA2CjlM=
+    on_start: never

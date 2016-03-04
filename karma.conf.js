@@ -93,8 +93,11 @@ module.exports = function(config) {
     },
 
     coverageReporter: {
-      type : 'text',
-      dir: 'test-results/coverage/'
+      reporters: [
+        { type: 'text'},
+        { type: 'json', subdir: '.'},
+        { type: 'lcovonly', subdir: '.'}
+      ]
     },
 
     junitReporter: {
