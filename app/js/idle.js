@@ -1,13 +1,12 @@
 $(".wallpaper-wrapper").slick({
     autoplay: true,
-    autoplaySpeed: 2500,
+    autoplaySpeed: 5000,
     speed: 500,
     arrows: false,
     fade: true,
     infinite: true,
     pauseOnHover: false
 });
-
 
 window.setInterval(function () {
     $(".wallpaper-video").get(0).play();
