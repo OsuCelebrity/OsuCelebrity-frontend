@@ -76,6 +76,7 @@ body {
 }
 
 .bgvideo {
+    opacity: 0.33;
     margin: 0;
     padding: 0;
     position: absolute;

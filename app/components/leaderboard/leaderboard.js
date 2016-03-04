@@ -2,27 +2,31 @@
 
 angular.module('osuCelebrity')
 
-.directive('osucelebLeaderboard', function() {
+.factory('LeaderboardLink', function() {
+  return function($scope, $element, $attr, ctrl) {
+    ctrl.startLink();
+  };
+})
+
+.directive('osucelebLeaderboard', function(LeaderboardLink) {
   return {
     templateUrl: 'components/leaderboard/leaderboard.html',
     restrict: 'E',
     controller: 'LeaderboardController',
-    link: function($scope, $element, $attr, ctrl) {
-      ctrl.startLink();
-    }
+    link: LeaderboardLink
   };
 })
 
-.controller('LeaderboardController', ['INTERVALS', '$scope', '$interval', 'QueueService', 'CurrentService', 
-  function(INTERVALS, $scope, $interval, Queue, Current) {
+.controller('LeaderboardController', ['INTERVALS', '$scope', '$interval', 'QueueService', 
+  function(INTERVALS, $scope, $interval, Queue) {
 
   this.startLink = function() {
-    $interval(updateQueue, INTERVALS.LEADERBOARD);
+    $interval(this.updateQueue, INTERVALS.LEADERBOARD);
   };
 
-  var updateQueue = function() {
-    var queue = Queue.query(function() {
-      $scope.queue = queue;
+  this.updateQueue = function() {
+    Queue.query(function(data) {
+      $scope.queue = data;
     });
   };
 }]);

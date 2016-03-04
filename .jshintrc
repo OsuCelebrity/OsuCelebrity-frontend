@@ -1,4 +1,7 @@
 {
+  "newcap": false,
+  "strict": true,
+  "indent": 2,
   "globalstrict": true,
   "globals": {
     "angular": false,

@@ -2,28 +2,32 @@
 
 angular.module('osuCelebrity')
 
-.directive('osucelebUserInfo', function() {
+.factory('UserInfoLink', function() {
+  return function($scope, $element, $attr, ctrl) {
+    ctrl.startLink();
+  };
+})
+
+.directive('osucelebUserInfo', function(UserInfoLink) {
   return {
     templateUrl: 'components/userinfo/userinfo.html',
     restrict: 'E',
     controller: 'UserInfoController',
-    link: function($scope, $element, $attr, ctrl) {
-      ctrl.startLink();
-    }
+    link: UserInfoLink
   };
 })
 
-.controller('UserInfoController', ['INTERVALS', '$scope', '$interval', 'CurrentService', '$resource', 
-  function(INTERVALS, $scope, $interval, Current, $resource) {
+.controller('UserInfoController', ['INTERVALS', '$scope', '$interval', 'CurrentService', 
+  function(INTERVALS, $scope, $interval, Current) {
 
   this.startLink = function() {
     $scope.Math = Math;
-    $interval(updateCurrent, INTERVALS.USER_INFO);
+    $interval(this.updateCurrent, INTERVALS.USER_INFO);
   }
 
-  var updateCurrent = function() {
-    var current = Current.get({}, function() {
-      $scope.current = current;
+  this.updateCurrent = function() {
+    Current.get({}, function(data) {
+      $scope.current = data;
       switch($scope.current.gameMode) {
         case 1:
           $scope.modeIcon = "icon-taiko";
@@ -35,6 +39,8 @@ angular.module('osuCelebrity')
           $scope.modeIcon = "icon-mania";
           break;
         case 0:
+          $scope.modeIcon = "icon-standard";
+          break;
         default:
           $scope.modeIcon = "icon-standard";
           break;
