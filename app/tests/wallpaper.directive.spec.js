@@ -15,7 +15,7 @@ describe('wallpaper directive', function(){
   it('replaces the element with the appropriate content', function() {
     var element = $compile("<osuceleb-wallpaper></osuceleb-wallpaper>")($rootScope);
     $rootScope.$digest();
-    expect(element.html()).toContain('<div class="wallpaper-wrapper">');
+    expect(element.html()).toContain('class="wallpaper-wrapper"');
   });
 
 });

@@ -1,15 +1,12 @@
-<div class="wallpaper-wrapper">
-    <div class="wallpaper">
-        <video class="wallpaper-video" autoplay loop>
-            <source src="/img/wallpapers/angel.webm" type="video/webm">
+<div class="wallpaper-wrapper" ng-init="getWallpapers([0,21], [0,32])">
+    <div class="wallpaper video" ng-repeat="source in videoSources">
+        <video ng-src="{{source}}" class="wallpaper-video">
+            <source type="video/webm">
         </video>
     </div>
-    <div class="wallpaper">
-  <video class="wallpaper-video" autoplay loop>
-            <source src="/img/wallpapers/jojo.webm" type="video/webm">
-        </video>
-</div>
-    <div class="wallpaper"><img src="/img/wallpapers/09.jpg"></div>
+    <div class="wallpaper image" ng-repeat="source in imageSources">
+        <img ng-src="{{source}}" alt="">
+    </div>
 </div>
 
 <script src="bower_components/slick-carousel/slick/slick.min.js"></script>

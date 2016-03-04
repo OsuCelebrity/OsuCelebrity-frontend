@@ -7,4 +7,4 @@ angular.module('osuCelebrity', [
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.otherwise({redirectTo: '/index'});
-}]);
+}]); 
