@@ -27,4 +27,11 @@ describe('user info directive', function(){
     expect(mockCtrl.startLink).toHaveBeenCalled();
   });
 
+  it('should understand the idle attribute', inject(function(UserInfoTemplateUrl) {
+    //Simulate passing the attribute
+    var templateUrl = UserInfoTemplateUrl(null, {"idle": ""});
+
+    expect(templateUrl).toContain('.idle.html');
+  }));
+
 });

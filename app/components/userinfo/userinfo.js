@@ -8,9 +8,18 @@ angular.module('osuCelebrity')
   };
 })
 
-.directive('osucelebUserInfo', function(UserInfoLink) {
+.factory('UserInfoTemplateUrl', function() {
+  return function(element, attr) {
+    var base = 'components/userinfo/userinfo'; 
+    if(attr.hasOwnProperty('idle'))
+      base += '.idle';
+    return base + '.html';
+  };
+})
+
+.directive('osucelebUserInfo', function(UserInfoLink, UserInfoTemplateUrl) {
   return {
-    templateUrl: 'components/userinfo/userinfo.html',
+    templateUrl: UserInfoTemplateUrl,
     restrict: 'E',
     controller: 'UserInfoController',
     link: UserInfoLink

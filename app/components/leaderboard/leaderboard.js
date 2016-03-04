@@ -8,9 +8,18 @@ angular.module('osuCelebrity')
   };
 })
 
-.directive('osucelebLeaderboard', function(LeaderboardLink) {
+.factory('LeaderboardTemplateUrl', function() {
+  return function(element, attr) {
+    var base = 'components/leaderboard/leaderboard'; 
+    if(attr.hasOwnProperty('idle'))
+      base += '.idle';
+    return base + '.html';
+  };
+})
+
+.directive('osucelebLeaderboard', function(LeaderboardLink, LeaderboardTemplateUrl) {
   return {
-    templateUrl: 'components/leaderboard/leaderboard.html',
+    templateUrl: LeaderboardTemplateUrl,
     restrict: 'E',
     controller: 'LeaderboardController',
     link: LeaderboardLink
