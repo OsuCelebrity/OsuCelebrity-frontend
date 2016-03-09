@@ -9,7 +9,8 @@ angular.module('osuCelebrity')
 
   return {
     CURRENT: API_URL + '/current',
-    QUEUE: API_URL + '/queue'
+    QUEUE: API_URL + '/queue',
+    VOTES: API_URL + '/votes'
   };
 })())
 
