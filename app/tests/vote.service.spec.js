@@ -4,12 +4,21 @@ describe('vote service', function(){
 
   beforeEach(module('osuCelebrity'));
 
+  var VoteService;
+  beforeEach(inject(function(_VoteService_) {
+    VoteService = _VoteService_;
+  }));
+
   afterEach(inject(function($httpBackend){
     $httpBackend.verifyNoOutstandingExpectation();
     $httpBackend.verifyNoOutstandingRequest();
   }));
 
-  it('should return a vote object with a query', inject(function(ENDPOINTS, $httpBackend, VoteService) {
+  it('should be defined', function() {
+    expect(!!VoteService).toBe(true);
+  });
+
+  it('should return a vote object array', inject(function(ENDPOINTS, $httpBackend) {
     expect(VoteService.query).toBeDefined();
 
     $httpBackend.expectGET(ENDPOINTS.VOTES).respond(
