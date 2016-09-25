@@ -62,10 +62,10 @@
                                 return message.replace(/</g,'&lt;').replace(/>/g, '&gt;');
                             },
                             extraEmoteTemplate: function(emote) {
-                                return '<img class="emoticon ' + emote.source + '-emo-' + emote.id + '" src="' + emote['1x'] + '" srcset="' + emote['2x'] + ' 2x" />';
+                                return '<img class="emoticon ' + emote.source + '-emo-' + emote.id + '" src="http://' + emote['1x'] + '" srcset="http://' + emote['2x'] + ' 2x" />';
                             },
                             emoteTemplate: function(id) {
-                                return '<img class="emoticon ttv-emo-' + id + '" src="//static-cdn.jtvnw.net/emoticons/v1/' + id + '/1.0" srcset="//static-cdn.jtvnw.net/emoticons/v1/' + id + '/2.0 2x" />';
+                                return '<img class="emoticon ttv-emo-' + id + '" src="https://static-cdn.jtvnw.net/emoticons/v1/' + id + '/1.0" srcset="https://static-cdn.jtvnw.net/emoticons/v1/' + id + '/2.0 2x" />';
                             },
                             emoticonize: function(message, emotes) {
                                 if(!emotes) return [message];
@@ -551,5 +551,5 @@
                         };
 
                         $(document).ready(function(){
-                          Chat.load(getParameterByName('channel').toLowerCase() || 'proleaguecsgo');
+                          Chat.load(getParameterByName('channel').toLowerCase() || 'osucelebrity');
                         });
