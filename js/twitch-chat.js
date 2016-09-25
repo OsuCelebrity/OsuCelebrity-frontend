@@ -263,7 +263,7 @@
                                 if(Chat.vars.preventClipping) {
                                     Chat.vars.max_height = $(window).height();
                                 } else {
-                                    $('#chat_box').css('height', 'calc(100% - 10px)');
+                                    // $('#chat_box').css('height', 'calc(100% - 10px)');
                                 }
 
                                 Chat.loadEmotes(function() {
