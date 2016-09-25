@@ -56,7 +56,7 @@ $(document).ready(function () {
                 }
                 if (data.id > 0 && data.id != lastUserId) {
                     lastUserId = data.id;
-                    var newValue = "https://a.ppy.sh/" + data.id + "_" + new Date().getTime() + ".png";
+                    var newValue = "https://a.ppy.sh/" + data.id;
                     $("#myimg").attr("src", newValue);
                 }
             }
