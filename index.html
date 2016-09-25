@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <video class="bgvideo" autoplay loop>
+    <video class="bgvideo" style="display: none;" autoplay loop>
         <source src="img/videoloop.webm" type="video/webm">
         <source src="img/videoloop.mp4" type="video/mp4">
     </video>
@@ -119,8 +119,9 @@
     </div>
 
     <script src="js/jquery-2.1.4.min.js"></script>
-    <script src="js/socket.io.js"></script>
     <script src="js/punycode.min.js"></script>
+    <script src="js/reconnecting-websocket.min.js"></script>
+    <script src="js/irc-message.js"></script>
     <script src="js/twitch-chat.js"></script>
     <script src="js/userinfo.js"></script>
     <script src="js/leaderboard.js"></script>

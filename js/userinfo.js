@@ -63,5 +63,5 @@ $(document).ready(function () {
         });
     }, 100);
 
-    $(".bgvideo").delay(500).fadeTo(2000, 0.33);
+    // $(".bgvideo").delay(500).fadeTo(2000, 0.33);
 });
