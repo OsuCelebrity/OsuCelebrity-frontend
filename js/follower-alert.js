@@ -53,7 +53,7 @@ jQuery(window).load(function () {
         if (offset > 1000) return;
 
         if (all) {
-            $.getJSON('https://api.twitch.tv/kraken/channels/osucelebrity/follows?direction=desc&limit=100&offset=' + offset + '&callback=?', function (data) {
+            $.getJSON('https://api.twitch.tv/kraken/channels/osucelebrity/follows?client_id=apbhlybpld3ybc6grv5c118xqpoz01c&direction=desc&limit=100&offset=' + offset + '&callback=?', function (data) {
                 if (data.follows && data.follows.length > 0) {
                     var tempList = [];
 
@@ -73,7 +73,7 @@ jQuery(window).load(function () {
                 }, 5000);
             });
         } else {
-            $.getJSON('https://api.twitch.tv/kraken/channels/osucelebrity/follows?direction=desc&limit=100&callback=?', function (data) {
+            $.getJSON('https://api.twitch.tv/kraken/channels/osucelebrity/follows?client_id=apbhlybpld3ybc6grv5c118xqpoz01c&direction=desc&limit=100&callback=?', function (data) {
                 if (data.follows) {
                     if (data['_total'] > 0 && followers.length === 0) {
                         var tempList = [];
