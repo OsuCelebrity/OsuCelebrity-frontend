@@ -11,6 +11,15 @@
     display: none;
 }
 
+.behind-wallpapers {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 1523px;
+    height: 857px;
+    z-index: 1;
+}
+
 .wallpaper-wrapper {
     position: absolute;
     right: 0;
@@ -18,13 +27,33 @@
     background-color: rgba(0,0,0,0.2);
     width: 1523px;
     height: 857px;
+    z-index: 2;
+    overflow: hidden;
 }
 
 .wallpaper {
+    position: absolute;
+    top: 0;
+    right: 0;
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
     height: 857px;
+    z-index: 3;
+    background: url("../img/slider-bg.png") no-repeat center center / cover;
+}
+
+.wallpaper.active {
+    z-index: 4;
+    animation: slideFade;
+    animation-duration: 0.5s;
+    animation-delay: 0;
+    animation-iteration-count: 1;
+}
+
+.wallpaper.queued {
+    z-index: 0;
 }
 
 .wallpaper * {
@@ -43,14 +72,14 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
-    z-index: 1;
+    z-index: 5;
     max-width: none;
     max-height: none;
 }
 
 .bg-blur ~ * {
     position: relative;
-    z-index: 2;
+    z-index: 6;
 }
 
 .wallpaper-info {
@@ -59,7 +88,7 @@
     bottom: 0;
     background: rgba(0,0,0,.7);
     color: #fff;
-    z-index: 3;
+    z-index: 7;
     padding: 10px 20px;
     font-family: 'Ubuntu', sans-serif;
 }
@@ -68,4 +97,20 @@
     font-size: 30px;
     font-weight: bold;
     margin-bottom: 5px;
+}
+
+.wallpaper video,
+.wallpaper img {
+    -webkit-box-shadow: 0px 0px 19px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 19px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 19px 0px rgba(0,0,0,0.75);
+}
+
+@keyframes slideFade {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
