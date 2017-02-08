@@ -113,13 +113,9 @@ $(document).ready(function() {
                 .one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e) {
                     $div.prev().remove();
                     if (isVideo === true) {
-                        document.addEventListener('ended', function(e){
-                            if($(e.target).is('.wallpaper.video.active video')){
-                                console.log("??????");
-                                addSlide();
-                            }
-                        }, true);
-                        $(".wallpaper.video.active video").get(0).play();
+                        $(".wallpaper.video.active video").on("ended", function() {
+                            addSlide();
+                        }).get(0).play();
                     } else {
                         addSlide();
                     }

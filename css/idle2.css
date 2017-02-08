@@ -35,8 +35,14 @@
     position: absolute;
     top: 0;
     right: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     width: 100%;
     height: 857px;
@@ -46,9 +52,13 @@
 
 .wallpaper.active {
     z-index: 4;
+    -webkit-animation: slideFade;
     animation: slideFade;
+    -webkit-animation-duration: 0.5s;
     animation-duration: 0.5s;
+    -webkit-animation-delay: 0;
     animation-delay: 0;
+    -webkit-animation-iteration-count: 1;
     animation-iteration-count: 1;
 }
 
@@ -63,12 +73,13 @@
 
 .bg-blur {
     position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-filter: blur(10px);
     filter: blur(10px);
-    /* Offset to prevent blurred edges from showing */
-    left: -5%;
-    top: -5%;
-    width: 110%;
-    height: 110%;
+    width: 120%;
+    height: 120%;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
@@ -101,9 +112,16 @@
 
 .wallpaper video,
 .wallpaper img {
-    -webkit-box-shadow: 0px 0px 19px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 0px 19px 0px rgba(0,0,0,0.75);
     box-shadow: 0px 0px 19px 0px rgba(0,0,0,0.75);
+}
+
+@-webkit-keyframes slideFade {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 @keyframes slideFade {
