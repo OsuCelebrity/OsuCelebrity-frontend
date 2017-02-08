@@ -1,8 +1,9 @@
 $(document).ready(function() {
     var settings = {
-        subreddits: '/r/osugame+anime+animenocontext+anime_irl+Animemes+AnimeThemes+animegifs+animegifs+awwnime+Animewallpaper',
+        // subreddits: '/r/osugame+anime+animenocontext+anime_irl+Animemes+AnimeThemes+animegifs+animegifs+awwnime+Animewallpaper',
         // subreddits: '/r/Unexpected',
-        // subreddits: '/r/AnimeThemes',
+        subreddits: '/r/AnimeThemes',
+        // subreddits: '/r/animegifs',
         after: '',
         imageTypes: {
             image: 'image',
@@ -40,18 +41,21 @@ $(document).ready(function() {
                 img.src = item.url;
             }
         });
-
-        setTimeout(function(){
-            console.table(slides);
-        }, 2000);
     }
 
     function startSlider() {
+        /* Add event listener to our fallback image */
+        $("#slider .wallpaper").one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function() {
+            setTimeout(function() {
+                addSlide();
+            }, settings.autoplaySpeed);
+        });
+
+        /* Give some time for
+        *  first images to load */
         setTimeout(function(){
             createSlideDiv(0);
         }, 3000);
-
-        settings.initialized = true;
     }
 
     function createSlideDiv(index) {
@@ -59,11 +63,12 @@ $(document).ready(function() {
             $infoWrapper = $("<div class='wallpaper-info'>"),
             $title = $("<div class='wallpaper-title'>").text(slides[index].title),
             $subreddit = $("<div class='wallpaper-subreddit'>").text("/r/" + slides[index].subreddit + " (" + settings.activeIndex + ")"),
-            isVideo = false;
+            isVideo = false,
+            animeTheme = false;
 
         if (slides[index].type === "image") {
             var $bgImg = $("<div class='bg-blur' />"),
-            $img = $("<img />");
+                $img = $("<img />");
 
             $bgImg.attr("style", 'background-image: url("' + slides[index].url + '");');
             $img.attr("src", slides[index].url);
@@ -94,7 +99,7 @@ $(document).ready(function() {
             $div.addClass("video").append($bgImg).append($video);
         } else if (slides[index].type === "animethemewebm") {
             var $video = $("<video style='width: 100%;' muted />");
-            isVideo = true;
+            animeTheme = true;
 
             $video.append($("<source />").attr({
                 'src': slides[index].url,
@@ -107,20 +112,31 @@ $(document).ready(function() {
         $infoWrapper.append($title).append($subreddit);
         $div.append($infoWrapper);
 
-        $.when($slider.append($div)).then(function() {
-            setTimeout(function() {
-                $div.addClass("active")
-                .one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e) {
-                    $div.prev().remove();
-                    if (isVideo === true) {
-                        $(".wallpaper.video.active video").on("ended", function() {
-                            addSlide();
-                        }).get(0).play();
-                    } else {
+        $.when($div.appendTo($slider).addClass("queued")).then(function() {
+            $div.prev().removeClass("queued").addClass("active");
+            $div.on('webkitAnimationEnd oanimationend msAnimationEnd animationend', function() {
+                $div.prev().remove();
+                if (isVideo === true) {
+                    $video.on("ended", function() {
                         addSlide();
-                    }
-                });
-            }, settings.autoplaySpeed);
+                    }).get(0).play();
+                } else if (animeTheme === true) {
+                    // duration is returned as NaN sometimes so "0" for fallback.
+                    var randomTime = Math.floor(Math.random() * ($video.get(0).duration - 10)) + 1 || 0;
+
+                    $video.get(0).currentTime = randomTime;
+                    $video.on("ended", function() {
+                        addSlide();
+                    }).get(0).play();
+                    setTimeout(function() {
+                        addSlide();
+                    }, settings.autoplaySpeed * 2);
+                } else {
+                    setTimeout(function() {
+                        addSlide();
+                    }, settings.autoplaySpeed);
+                }
+            });
         });
     }
 

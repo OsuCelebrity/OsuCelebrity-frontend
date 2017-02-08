@@ -60,10 +60,12 @@
     animation-delay: 0;
     -webkit-animation-iteration-count: 1;
     animation-iteration-count: 1;
+    opacity: 1;
 }
 
 .wallpaper.queued {
     z-index: 0;
+    opacity: 0;
 }
 
 .wallpaper * {
