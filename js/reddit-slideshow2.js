@@ -1,9 +1,6 @@
 $(document).ready(function() {
     var settings = {
-        // subreddits: '/r/osugame+anime+animenocontext+anime_irl+Animemes+AnimeThemes+animegifs+animegifs+awwnime+Animewallpaper',
-        // subreddits: '/r/Unexpected',
-        subreddits: '/r/AnimeThemes',
-        // subreddits: '/r/animegifs',
+        subreddits: '/r/osugame+anime+animenocontext+anime_irl+Animemes+AnimeThemes+animegifs+animegifs+awwnime+Animewallpaper',
         after: '',
         imageTypes: {
             image: 'image',
@@ -17,20 +14,25 @@ $(document).ready(function() {
         initialized: false,
         imagesPreloaded: false,
         activeIndex: 0,
-        autoplaySpeed: 2000
+        autoplaySpeed: 4000
     },
     slides = [],
     $slider = $("#slider");
 
     function preloadAndFilter(images) {
         $.each(images, function(index, item) {
-            if (item.type === "image") {
+            /* We don't want to check ALL of the items in our
+            *  slide array so we'll just only check images
+            *  and newest items inside of it */
+            if (item.type === "image" && index >= settings.activeIndex) {
                 var img = new Image();
 
                 img.onload = function() {
                     var width = img.width,
                     height = img.height;
 
+                    /* Checking to make sure the aspect ratio
+                    *  is somewhat decent, otherwise we'll skip */
                     if ((width/height) < 1) {
                         item.skip = true;
                     }
@@ -56,6 +58,8 @@ $(document).ready(function() {
         setTimeout(function(){
             createSlideDiv(0);
         }, 3000);
+
+        settings.startSlider = true;
     }
 
     function createSlideDiv(index) {
@@ -115,7 +119,11 @@ $(document).ready(function() {
         $.when($div.appendTo($slider).addClass("queued")).then(function() {
             $div.prev().removeClass("queued").addClass("active");
             $div.on('webkitAnimationEnd oanimationend msAnimationEnd animationend', function() {
-                $div.prev().remove();
+                var tempIndex = settings.activeIndex;
+
+                /* Remove previous slides to be lag-free! */
+                $div.prevAll().remove();
+
                 if (isVideo === true) {
                     $video.on("ended", function() {
                         addSlide();
@@ -136,6 +144,13 @@ $(document).ready(function() {
                         addSlide();
                     }, settings.autoplaySpeed);
                 }
+
+                /* Backup function just in case if the slides didn't move */
+                setTimeout(function() {
+                    if (tempIndex === settings.activeIndex) {
+                        addSlide();
+                    }
+                }, 30000);
             });
         });
     }
@@ -148,9 +163,15 @@ $(document).ready(function() {
                 if ( slides[settings.activeIndex].skip === false ) break
             }
 
-            if ( settings.activeIndex < slides.length) {
+            /* Create next slide or generate new
+            *  images and continue to next slide */
+            if ( settings.activeIndex < slides.length - 3) {
                 createSlideDiv(settings.activeIndex);
+            } else {
+                console.log("Active Index is " + settings.activeIndex + " and slides length is " + slides.length + "(" + (slides.length - 2) + ")");
+                getRedditImages();
             }
+
         } else {
             createSlideDiv(addingIndex);
         }
@@ -185,10 +206,14 @@ $(document).ready(function() {
         }
     }
 
+    /* Main function for when the API successfully retrieves us info */
     function successAjax(data) {
         console.log("Data object: ", data);
         settings.after = "&after=" + data.data.after;
 
+        /* Iterates through each object and filter over them
+        *  so we don't get any NSFW content. Also adds in the
+        *  initial key:values for us to use later */
         $.each(data.data.children, function (i, item) {
             if (!item.data.over_18) {
                 addSlideArray({
@@ -203,9 +228,14 @@ $(document).ready(function() {
 
         console.table(slides);
 
+        /* After all the slides are in the array we'll preload
+        *  all images asynchronously and do some more filtering */
         preloadAndFilter(slides);
 
-        startSlider();
+        /* Starts the slider */
+        if (!settings.initialized) {
+            startSlider();
+        }
     }
 
     function addSlideArray(slide) {
@@ -227,9 +257,15 @@ $(document).ready(function() {
             return;
         }
 
+        /* If it falls under any of our
+        *  previous checks we'll push
+        *  to our main slides array to
+        *  be used in the slider later */
         slides.push(slide);
     }
 
+    /* Small function as a final check
+    *  to see if the URL is usable */
     function isImageExtension(url) {
         var dotLocation = url.lastIndexOf('.');
         if (dotLocation < 0) {
@@ -246,19 +282,28 @@ $(document).ready(function() {
         }
     }
 
+    /* AJAX call to Reddit's API. When this function is called
+    *  anytime other than the first it will use the settings.after
+    *  to continue from where the supplied objects left off. */
     function getRedditImages() {
         $.ajax({
             url: "http://www.reddit.com" + settings.subreddits + ".json?jsonp=?" + settings.after + "&",
             dataType: 'jsonp',
             success: successAjax,
+            /* I'm too lazy to try to debug potential errors so it
+            *  will just reload the page and start over if anything
+            *  unexpected happens */
             error: function(err) {
                 console.log("error", err)
+                window.location.reload(true);
             },
             404: function(err) {
                 console.log("404", err)
+                window.location.reload(true);
             }
         });
     }
 
+    /* First function called to start everything */
     getRedditImages();
 });
