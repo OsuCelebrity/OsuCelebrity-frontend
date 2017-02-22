@@ -14,7 +14,7 @@ $(document).ready(function() {
         initialized: false,
         imagesPreloaded: false,
         activeIndex: 0,
-        autoplaySpeed: 4000
+        autoplaySpeed: 10000
     },
     slides = [],
     $slider = $("#slider");
@@ -145,7 +145,7 @@ $(document).ready(function() {
                     }, settings.autoplaySpeed);
                 }
 
-                /* Backup function just in case if the slides didn't move */
+                /* Backup just in case if the slides didn't move */
                 setTimeout(function() {
                     if (tempIndex === settings.activeIndex) {
                         addSlide();
